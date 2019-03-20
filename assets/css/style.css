@@ -46,3 +46,10 @@ h1 {
   width: 100%;
   font-size: 25px;
 }
+
+.result {
+  font-size: 80px;
+  text-align: center;
+  height: auto;
+  width: 100%;
+}

@@ -7,7 +7,12 @@ $(document).ready(function() {
 
 
 // Create and insert Answer boxes /////////////////////////////////////////////
-  function insertAnswers () { event.preventDefault();
+  function insertAnswers () {
+    $('#wrong').attr('style','display:none;');
+    $('#right').attr('style','display:none;');
+    $('#answers').attr('style','display:block;');
+    $('#timerBox').attr('style','display:block;');
+    $('#question').attr('style','display:block;');
 
     // Clear containers
     $('#question').empty();
@@ -34,7 +39,6 @@ $(document).ready(function() {
 // On Click Start //////////////////////////////////////////////////////////
   $("#startbtn").on('click',function(){ event.preventDefault();
     insertAnswers();
-    $('#answers').attr('style','display:block;');
     $('#startbtn').attr('style','display:none;');
   });
 /////////////////////////////////////////////////////////////////////////
@@ -43,27 +47,26 @@ $(document).ready(function() {
 
 // Store selected answer ////////////////////////////////////////////////
 $('.answer').on('click',function(){ event.preventDefault();
+  $('#answers').attr('style','display:none;');
+  $('#timerBox').attr('style','display:none;');
+  $('#question').attr('style','display:none;');
   var value = $(this).val();
   questionCurrent++;
-  if (value == correctAnswer) {
-    console.log('Right');
-    score++;
-    youRight();
-  }
-  else {
-    console.log('Wrong');
-    youWrong();
-  }
+  if (value == correctAnswer) { youRight(); }
+  else { youWrong(); }
 });
 
 function youRight() {
-  alert('Correct!');
-  insertAnswers();
+  console.log('Right');
+  score++;
+  $('#right').attr('style','display:block;');
+  setTimeout(insertAnswers, 1000 * 2);
 };
 
 function youWrong() {
-  alert('Wrong!');
-  insertAnswers();
+  console.log('Wrong');
+  $('#wrong').attr('style','display:block;');
+  setTimeout(insertAnswers, 1000 * 2);
 };
 
 
