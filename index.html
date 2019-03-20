@@ -55,12 +55,23 @@
     <!--Answers-->
     <div class="row">
       <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
-      <div class="col-4 col-md-4 col-lg-4 col-xl-4">
-        <form id="answers">
-          <button id="start">Start!</button>
-        </form>
+      <div class="col-4 col-md-4 col-lg-4 col-xl-4" id="answers" style="display:none;">
+          <button id="a" value="a" class="answer"></button>
+          <button id="b" value="b" class="answer"></button>
+          <button id="c" value="c" class="answer"></button>
+          <button id="d" value="d" class="answer"></button>
       </div>
       <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+    </div>
+
+      <div class="row">
+        <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+        <div class="col-4 col-md-4 col-lg-4 col-xl-4">
+          <button id="startbtn">Start!</button>
+        </div>
+        <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+      </div>
+
     </div>
     <!-- End Answers-->
 
@@ -76,8 +87,10 @@
 
     <!-- Javascript Links -->
     <script type="text/javascript" src="assets/javascript/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/popper.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/questions.js"></script>
 </body>
 </html>
