@@ -10,13 +10,66 @@
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/w3.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!--https://bryton-jay-smith.github.io/TriviaGame/-->
 
     <title>Template</title>
 </head>
 <body>
+  <div class="container">
 
-  
+    <!--Title-->
+    <div class="row">
+    <div class="col-2 col-md-2 col-lg-2 col-xl-2"></div>
+    <div class="col-8 col-md-8 col-lg-8 col-xl-8">
+    <h1>The Office Trivia Game!</h1>
+    </div>
+    <div class="col-2 col-md-2 col-lg-2 col-xl-2"></div>
+    </div>
+    <!-- End Title -->
+
+    <!--Timer-->
+    <div class="row">
+    <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+    <div class="col-4 col-md-4 col-lg-4 col-xl-4">
+    <div class='timerStyle'>Timer: <div id='timer'>10</div>s</div>
+    </div>
+    <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+    </div>
+    <!--End Timer-->
+
+    <!--Question-->
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12 col-xl-12" id="question">
+        <p class="question">
+          Time for a Game! You will be asked 10 multiple choice questions about
+          everyone's favorite show! You'll have Ten seconds to anwser each question,
+          and if you get them all right, you're officially a certified "The Office"
+          know-it-all! Get going!!
+        </p>
+      </div>
+    </div>
+    <!-- End Question-->
+
+    <!--Answers-->
+    <div class="row">
+      <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+      <div class="col-4 col-md-4 col-lg-4 col-xl-4">
+        <form id="answers">
+          <button id="start">Start!</button>
+        </form>
+      </div>
+      <div class="col-4 col-md-4 col-lg-4 col-xl-4"></div>
+    </div>
+    <!-- End Answers-->
+
+
+
+
+  </div>
+
+
 
 
 
@@ -25,6 +78,6 @@
     <script type="text/javascript" src="assets/javascript/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="assets/javascript/popper.min.js"></script>
     <script type="text/javascript" src="assets/javascript/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/main.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
