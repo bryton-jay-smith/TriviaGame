@@ -5,8 +5,50 @@ $(document).ready(function() {
   var correctAnswer;
   var score = 0;
 
+  // Refresh Page /////////////////////////////////////////////////////////////
+  $("#reset").on('click',function(){
+    $('#wrong').attr('style','display:none;');
+    $('#right').attr('style','display:none;');
+    $('#answers').attr('style','display:none;');
+    $('#timerBox').attr('style','display:none;');
+    $('#question').attr('style','display:none;');
+    $('#endCard').attr('style','display:none;');
+    location.reload();
+  });
+  //////////////////////////////////////////////////////////////////////////////
 
-// Create and insert Answer boxes /////////////////////////////////////////////
+
+  // Score and End Card ////////////////////////////////////////////////////////
+  function endCard() {
+    $('#wrong').attr('style','display:none;');
+    $('#right').attr('style','display:none;');
+    $('#answers').attr('style','display:none;');
+    $('#timerBox').attr('style','display:none;');
+    $('#question').attr('style','display:block;');
+    $('#endCard').attr('style','display:block;');
+
+    // Ending Message
+    $('#question').empty();
+    if ( score > 5 ) {
+      $('#question').html("<h2>"+"You ignorant slut."+"</h2>");
+    }
+    if ( score > 10 ) {
+      $('#question').html("<h2>"+"Almost! Try again for a perfect score!"+"</h2>");
+    }
+    if ( score == 10 ) {
+      $('#question').html("<h2>"+"Congradulations! You earn a Dundie!"+"</h2>");
+    }
+
+    // Display Score
+    var scoreCard = $('<h1>');
+    scoreCard.html( "Score: " + score + "/10" );
+    $('#endCard').prepend(scoreCard);
+
+  };
+  //////////////////////////////////////////////////////////////////////////////
+
+
+  // Create and insert Answer boxes /////////////////////////////////////////////
   function insertAnswers () {
     $('#wrong').attr('style','display:none;');
     $('#right').attr('style','display:none;');
@@ -33,41 +75,53 @@ $(document).ready(function() {
     // Store Correct answer value
     correctAnswer = triviaQuestions.questions[questionCurrent].correctAnswer;
   };
-////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////
 
 
-// On Click Start //////////////////////////////////////////////////////////
+  // On Click Start //////////////////////////////////////////////////////////
   $("#startbtn").on('click',function(){ event.preventDefault();
     insertAnswers();
     $('#startbtn').attr('style','display:none;');
   });
-/////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
 
 
 
-// Store selected answer ////////////////////////////////////////////////
-$('.answer').on('click',function(){ event.preventDefault();
-  $('#answers').attr('style','display:none;');
-  $('#timerBox').attr('style','display:none;');
-  $('#question').attr('style','display:none;');
-  var value = $(this).val();
-  questionCurrent++;
-  if (value == correctAnswer) { youRight(); }
-  else { youWrong(); }
-});
+  // Store selected answer ////////////////////////////////////////////////
+  $('.answer').on('click',function(){ event.preventDefault();
+    $('#answers').attr('style','display:none;');
+    $('#timerBox').attr('style','display:none;');
+    $('#question').attr('style','display:none;');
+    var value = $(this).val();
+    questionCurrent++;
+    if (value == correctAnswer) { youRight(); }
+    else { youWrong();
+  };
 
-function youRight() {
-  console.log('Right');
-  score++;
-  $('#right').attr('style','display:block;');
-  setTimeout(insertAnswers, 1000 * 2);
-};
+  });
 
-function youWrong() {
-  console.log('Wrong');
-  $('#wrong').attr('style','display:block;');
-  setTimeout(insertAnswers, 1000 * 2);
-};
+  function youRight() {
+    console.log('Right');
+    score++;
+    $('#right').attr('style','display:block;');
+    console.log(questionCurrent);
+    console.log(score);
+    if (questionCurrent == 9){
+      console.log(questionCurrent);
+      setTimeout(endCard, 1000 * 2);
+    }
+    else {
+    setTimeout(insertAnswers, 1000 * 2);}
+  };
+
+  function youWrong() {
+    console.log('Wrong');
+    $('#wrong').attr('style','display:block;');
+    if (questionCurrent == 9){
+      setTimeout(endCard, 1000 * 2);}
+    else {
+    setTimeout(insertAnswers, 1000 * 2);}
+  };
 
 
 
