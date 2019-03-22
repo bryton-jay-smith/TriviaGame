@@ -4,25 +4,48 @@ $(document).ready(function() {
   var questionCurrent = 0;
   var correctAnswer;
   var score = 0;
+  var time = 10;
 
-  // Refresh Page /////////////////////////////////////////////////////////////
-  $("#reset").on('click',function(){
+
+  // Hide all Divs /////////////////////////////////////////////////////////////
+  function cleanHouse () {
+    $('#startbtn').attr('style','display:none;');
+    $('#timeout').attr('style','display:none;');
     $('#wrong').attr('style','display:none;');
     $('#right').attr('style','display:none;');
     $('#answers').attr('style','display:none;');
-    $('#timerBox').attr('style','display:none;');
     $('#question').attr('style','display:none;');
     $('#endCard').attr('style','display:none;');
-    location.reload();
-  });
-  //////////////////////////////////////////////////////////////////////////////
+  };
+
+  // Timer /////////////////////////////////////////////////////////////////////
+  function countDown () {
+    console.log("timer active");
+    while (time !== 0) {
+    setTimeout(function(){time--;}, 1000);
+    $("#timer").html(time);}
+
+    
+
+  };
+
+  // Time's up! ////////////////////////////////////////////////////////////////
+  function timeUp() {
+    cleanHouse();
+    console.log('Timeout!');
+    $('#timeout').attr('style','display:block;');
+    if (questionCurrent == 9){
+      setTimeout(endCard, 1000 * 2);}
+    else {
+    setTimeout(insertAnswers, 1000 * 2);}
+  };
+
 
 
   // Score and End Card ////////////////////////////////////////////////////////
   function endCard() {
-    $('#wrong').attr('style','display:none;');
-    $('#right').attr('style','display:none;');
-    $('#answers').attr('style','display:none;');
+    cleanHouse ();
+
     $('#timerBox').attr('style','display:none;');
     $('#question').attr('style','display:block;');
     $('#endCard').attr('style','display:block;');
@@ -45,13 +68,12 @@ $(document).ready(function() {
     $('#endCard').prepend(scoreCard);
 
   };
-  //////////////////////////////////////////////////////////////////////////////
-
 
   // Create and insert Answer boxes /////////////////////////////////////////////
   function insertAnswers () {
-    $('#wrong').attr('style','display:none;');
-    $('#right').attr('style','display:none;');
+    cleanHouse ();
+    time = 10;
+
     $('#answers').attr('style','display:block;');
     $('#timerBox').attr('style','display:block;');
     $('#question').attr('style','display:block;');
@@ -74,32 +96,25 @@ $(document).ready(function() {
 
     // Store Correct answer value
     correctAnswer = triviaQuestions.questions[questionCurrent].correctAnswer;
+    countDown();
   };
-  ////////////////////////////////////////////////////////////////////////////////
-
 
   // On Click Start //////////////////////////////////////////////////////////
   $("#startbtn").on('click',function(){ event.preventDefault();
-    insertAnswers();
-    $('#startbtn').attr('style','display:none;');
+    insertAnswers();       
   });
-  /////////////////////////////////////////////////////////////////////////
-
-
 
   // Store selected answer ////////////////////////////////////////////////
   $('.answer').on('click',function(){ event.preventDefault();
-    $('#answers').attr('style','display:none;');
-    $('#timerBox').attr('style','display:none;');
-    $('#question').attr('style','display:none;');
+    cleanHouse ();
     var value = $(this).val();
     questionCurrent++;
     if (value == correctAnswer) { youRight(); }
     else { youWrong();
   };
-
+  
   });
-
+  /////////////////////////////////////////////////////////////////////////////
   function youRight() {
     console.log('Right');
     score++;
@@ -113,7 +128,7 @@ $(document).ready(function() {
     else {
     setTimeout(insertAnswers, 1000 * 2);}
   };
-
+  /////////////////////////////////////////////////////////////////////////////
   function youWrong() {
     console.log('Wrong');
     $('#wrong').attr('style','display:block;');
@@ -122,6 +137,13 @@ $(document).ready(function() {
     else {
     setTimeout(insertAnswers, 1000 * 2);}
   };
+
+    // Refresh Page /////////////////////////////////////////////////////////////
+    $("#reset").on('click',function(){
+      cleanHouse ();
+      location.reload();
+    });
+    //////////////////////////////////////////////////////////////////////////////
 
 
 
