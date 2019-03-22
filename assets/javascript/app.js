@@ -3,7 +3,7 @@ $(document).ready(function() {
   var letters = ['a', 'b', 'c', 'd'];
   var questionCurrent = 0;
   var correctAnswer;
-  var score = 0;
+  var score = 1;
   var time = 10;
   var intervalId;
 
