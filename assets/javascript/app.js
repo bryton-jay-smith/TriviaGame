@@ -40,7 +40,7 @@ $(document).ready(function() {
     console.log('Timeout!');
     $('#timeout').attr('style','display:block;');
     questionCurrent++;
-    if (questionCurrent == 9){
+    if (questionCurrent == 10){
       setTimeout(endCard, 1000 * 2);}
     else {
     setTimeout(insertAnswers, 1000 * 2);}
@@ -141,7 +141,7 @@ $(document).ready(function() {
   function youWrong() {
     console.log('Wrong');
     $('#wrong').attr('style','display:block;');
-    if (questionCurrent == 9){
+    if (questionCurrent == 10){
       setTimeout(endCard, 1000 * 2);}
     else {
     setTimeout(insertAnswers, 1000 * 2);}
