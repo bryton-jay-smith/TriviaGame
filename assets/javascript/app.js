@@ -3,7 +3,7 @@ $(document).ready(function() {
   var letters = ['a', 'b', 'c', 'd'];
   var questionCurrent = 0;
   var correctAnswer;
-  var score = 1;
+  var score = 0;
   var time = 10;
   var intervalId;
 
@@ -130,7 +130,7 @@ $(document).ready(function() {
     $('#right').attr('style','display:block;');
     console.log(questionCurrent);
     console.log(score);
-    if (questionCurrent == 9){
+    if (questionCurrent == 10){
       console.log(questionCurrent);
       setTimeout(endCard, 1000 * 2);
     }
