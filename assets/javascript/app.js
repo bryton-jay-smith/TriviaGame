@@ -5,6 +5,7 @@ $(document).ready(function() {
   var correctAnswer;
   var score = 0;
   var time = 10;
+  var intervalId;
 
 
   // Hide all Divs /////////////////////////////////////////////////////////////
@@ -20,20 +21,25 @@ $(document).ready(function() {
 
   // Timer /////////////////////////////////////////////////////////////////////
   function countDown () {
-    console.log("timer active");
-    while (time !== 0) {
-    setTimeout(function(){time--;}, 1000);
-    $("#timer").html(time);}
-
-    
-
+    clearInterval(intervalId);
+    intervalId = setInterval(count, 1000);
   };
+
+  function count () {
+    time--;
+    $("#timer").html(time);
+    if (time == 0) {
+      timeUp();
+    };
+  }
 
   // Time's up! ////////////////////////////////////////////////////////////////
   function timeUp() {
     cleanHouse();
+    clearInterval(intervalId);
     console.log('Timeout!');
     $('#timeout').attr('style','display:block;');
+    questionCurrent++;
     if (questionCurrent == 9){
       setTimeout(endCard, 1000 * 2);}
     else {
@@ -52,13 +58,13 @@ $(document).ready(function() {
 
     // Ending Message
     $('#question').empty();
-    if ( score > 5 ) {
+    if ( score < 5 ) {
       $('#question').html("<h2>"+"You ignorant slut."+"</h2>");
     }
-    if ( score > 10 ) {
+    else if ( score < 10 ) {
       $('#question').html("<h2>"+"Almost! Try again for a perfect score!"+"</h2>");
     }
-    if ( score == 10 ) {
+    else if ( score == 10 ) {
       $('#question').html("<h2>"+"Congradulations! You earn a Dundie!"+"</h2>");
     }
 
@@ -73,6 +79,8 @@ $(document).ready(function() {
   function insertAnswers () {
     cleanHouse ();
     time = 10;
+    $("#timer").html(time);
+
 
     $('#answers').attr('style','display:block;');
     $('#timerBox').attr('style','display:block;');
@@ -107,6 +115,7 @@ $(document).ready(function() {
   // Store selected answer ////////////////////////////////////////////////
   $('.answer').on('click',function(){ event.preventDefault();
     cleanHouse ();
+    clearInterval(intervalId);
     var value = $(this).val();
     questionCurrent++;
     if (value == correctAnswer) { youRight(); }

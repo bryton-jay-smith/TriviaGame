@@ -7,6 +7,9 @@ h1 {
   margin-bottom: 60px;
 }
 
+#question {
+  text-align: center;
+}
 
 .timerStyle {
   font-size: 30px;
