@@ -39,11 +39,12 @@ $(document).ready(function() {
     clearInterval(intervalId);
     console.log('Timeout!');
     $('#timeout').attr('style','display:block;');
-    questionCurrent++;
+    
     if (questionCurrent == 10){
       setTimeout(endCard, 1000 * 2);}
     else {
     setTimeout(insertAnswers, 1000 * 2);}
+    questionCurrent++;
   };
 
 
@@ -117,7 +118,7 @@ $(document).ready(function() {
     cleanHouse ();
     clearInterval(intervalId);
     var value = $(this).val();
-    questionCurrent++;
+    
     if (value == correctAnswer) { youRight(); }
     else { youWrong();
   };
@@ -135,7 +136,8 @@ $(document).ready(function() {
       setTimeout(endCard, 1000 * 2);
     }
     else {
-    setTimeout(insertAnswers, 1000 * 2);}
+    setTimeout(insertAnswers, 1000 * 2);};
+    questionCurrent++;
   };
   /////////////////////////////////////////////////////////////////////////////
   function youWrong() {
